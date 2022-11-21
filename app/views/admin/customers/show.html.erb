@@ -1,0 +1,61 @@
+<body>
+    <main>
+        <div class="row justify-content-center">
+            <div class="col-md-8 offset-md-1">
+                <h5 class="m-4 text-black bg-info d-inline-block">会員詳細</h5>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8 offset-md-1">
+                <table class="table">
+                    <tbody>
+                        <thead>
+                            <tr>
+                                <td><%= label :customer_id, "会員ID" %></td>
+                                <td><%= @customer.id %></td>
+                            </tr>
+                            <tr>
+                                <td><%= label :customer_name, "氏名" %></td>
+                                <td><%= @customer.fisrt_name + @customer.last_name %></td>
+                            </tr>
+                            <tr>
+                                <td><%= label :item_introduction, "フリガナ" %></td>
+                                <td>%= @customer.fisrt_name_kana + @customer.last_name_kana %></td>
+                            </tr>
+                            <tr>
+                                <td><%= label :item_genre, "郵便番号" %></td>
+                                <td><%= @customer.postal_code %></td>
+                            </tr>
+                            <tr>
+                                <td><%= label :item_price, "住所" %></td>
+                                <td><%= @customer.address %></td>
+                            </tr>
+                            <tr>
+                                <td><%= label :customer_price, "電話番号" %></td>
+                                <td><%= @customer.telephone_number %></td>
+                            </tr>
+                            <tr>
+                                <td><%= label :customer_price, "メールアドレス" %></td>
+                                <td><%= @customer.email %></td>
+                            </tr>
+                            <tr>
+                                <td><%= label :customer_status, "会員ステータス" %></td>
+                                <td>
+                                    <% if @customer.is_deleted == true %>
+                                    販売中
+                                    <% else %>
+                                    販売停止中
+                                    <% end %>
+                                </td>
+                            </tr>
+                        </thead>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+    </main>
+</body>
+
+

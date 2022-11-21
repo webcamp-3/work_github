@@ -2,15 +2,104 @@
 <html>
   <head>
     <title>WorkGithub</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm border-bottom border-3">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <h1 class="navbar-brand p-4">LOGO</h1>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <li class="nav-item ">
+                  
+                </li>
+                <li class="nav-item">
+                 
+                </li>
+                <li class="nav-item">
+                  
+                </li>
+                <li class="nav-item">
+                  
+                </li>
+                <li class="nav-item">
+                  
+                </li>
+              <% elsif admin_signed_in? %>
+                 <li class="nav-item ">
+                  <%= link_to admin_items_path , class: 'nav-link text-black' do %>
+                  商品一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_customers_path , class: 'nav-link text-black' do %>
+                  会員一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_homes_top_path , class: 'nav-link text-black' do %>
+                  注文履歴一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_genres_path , class: 'nav-link text-black' do %>
+                  ジャンル一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_admin_session_path , method: :delete, class: 'nav-link text-black' do %>
+                  ログアウト
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to new_customer_session_path , class: 'nav-link text-black' do %>
+                  About
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_customer_session_path , class: 'nav-link text-black' do %>
+                  商品一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_customer_session_path , class: 'nav-link text-black' do %>
+                  新規登録
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_customer_session_path , class: 'nav-link text-black' do %>
+                  ログイン
+                  <% end %>
+                </li>
+              <% end %>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer class="footer fixed-bottom border-top" style="height: 70px;">
+      <div class="row border">
+      </div>
+    </footer>
+
   </body>
 </html>
