@@ -35,51 +35,53 @@
                   
                 </li>
                 <li class="nav-item">
-                  
+                  <%= link_to destroy_customer_session_path , method: :delete, class: 'nav-link text-black' do %>
+                  ログアウト
+                  <% end %>
                 </li>
               <% elsif admin_signed_in? %>
-                 <li class="nav-item ">
+                 <li class="nav-item btn btn-light m-1">
                   <%= link_to admin_items_path , class: 'nav-link text-black' do %>
                   商品一覧
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item btn btn-light m-1">
                   <%= link_to admin_customers_path , class: 'nav-link text-black' do %>
                   会員一覧
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item m-1">
                   <%= link_to admin_homes_top_path , class: 'nav-link text-black' do %>
                   注文履歴一覧
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item btn btn-light">
                   <%= link_to admin_genres_path , class: 'nav-link text-black' do %>
                   ジャンル一覧
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item btn btn-light m-1">
                   <%= link_to destroy_admin_session_path , method: :delete, class: 'nav-link text-black' do %>
                   ログアウト
                   <% end %>
                 </li>
               <% else %>
-                <li class="nav-item">
+                <li class="nav-item btn btn-light m-1">
                   <%= link_to new_customer_session_path , class: 'nav-link text-black' do %>
                   About
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item btn btn-light m-1">
                   <%= link_to new_customer_session_path , class: 'nav-link text-black' do %>
                   商品一覧
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item btn btn-light m-1">
                   <%= link_to new_customer_session_path , class: 'nav-link text-black' do %>
                   新規登録
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item btn btn-light m-1">
                   <%= link_to new_customer_session_path , class: 'nav-link text-black' do %>
                   ログイン
                   <% end %>
@@ -92,12 +94,12 @@
       </nav>
     </header>
 
-    <main>
+    <main style="padding-bottom: 70px;">
       <%= yield %>
     </main>
 
-    <footer class="footer fixed-bottom border-top" style="height: 70px;">
-      <div class="row border">
+    <footer class="footer fixed-bottom border-top bg-white" style="height: 70px;">
+      <div class="row border bg-white">
       </div>
     </footer>
 

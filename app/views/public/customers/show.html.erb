@@ -1,2 +1,74 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="row justify-content-center">
+  <div class="col-md-10 offset-md-1">
+    <h5 class="m-4 text-black bg-info d-inline-block">マイページ</h5>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row position-absolutestart-0 top-50">
+    <div class="col-md-7">
+
+      <table class="table table-borderless">
+        <tbody>
+          <td class="col-md-3 font-weight-bold h3">登録情報</td>
+          <td>
+            <%= link_to edit_public_customers_path , class: 'btn btn-success' do %>
+              編集する
+            <% end %>
+          </td>
+        </tbody>
+      </table>
+
+      <table class="table border border-secondary border-3">
+        <tbody>
+          <tr>
+            <td class="bg-light col-md-3 border-secondary"><%= label :name, "氏名" %></td>
+            <td class="col-md-10 border-secondary border"><%= @customer.last_name + @customer.first_name %></td>
+          </tr>
+          <tr>
+            <td class="bg-light col-md-3 border-secondary"><%= label :kana_name, "カナ" %></td>
+            <td class="col-md-10 border-secondary border"><%= @customer.last_name_kana + @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <td class="bg-light col-md-3 border-secondary"<%= label :postal_code, "郵便番号" %></td>
+            <td class="col-md-10 border-secondary border"><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <td class="bg-light col-md-3 border-secondary"><%= label :address, "住所" %></td>
+            <td class="col-md-10 border-secondary border"><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td class="bg-light col-md-3 border-secondary"><%= label :telephone_number, "電話番号" %></td>
+            <td class="col-md-10 border-secondary border"><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <td class="bg-light col-md-3 border-secondary"><%= label :email, "メールアドレス" %></td>
+            <td class="col-md-10 border-secondary border"><%= @customer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td class="col-md-3 font-weight-bold h3">配送先</td>
+            <td>
+              <%= link_to public_addresses_path , class: 'btn btn-primary' do %>
+                一覧を見る
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-2 font-weight-bold h3">注文履歴</td>
+            <td>
+              <%= link_to public_orders_path , class: 'btn btn-primary' do %>
+                一覧を見る
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

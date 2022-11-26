@@ -1,31 +1,39 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-      <h5>log in</h5>
-
+<main>
+  <div class="row justify-content-center">
+    <div class="col-md-8 offset-md-1">
+      <h5 class="m-4 text-black bg-info d-inline-block">管理者ログイン</h5>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center">
+    <div class="col-md-6 offset-md-1">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render "admin/shared/error_messages", resource: resource %>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-
       
-      <div class="actions">
-        <%= f.submit "log in" %>
-      </div>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td><%= f.label :メールアドレス %></td>
+            <td><%= f.email_field :email, :size=>"40", autofocus: true, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :パスワード %></td>
+            <td>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <%= f.password_field :password, :size=>"40", autocomplete: "new-password" %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "ログイン" %></td>
+          </tr>
+        </tbody>
+      </table>
       <% end %>
-
+      
       <%= render "admin/shared/links" %>
     </div>
   </div>
-</div>
+  
