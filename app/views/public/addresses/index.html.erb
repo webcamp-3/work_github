@@ -5,14 +5,14 @@
 </div>
 
 <div class="container">
-  <div class="row position-absolutestart-0 top-50">
+  <div class="row position-absolutestart-0">
     <div class="col-md-10">
-      <%= form_with model: @addresses, url: public_addresses_path do |f| %>
+      <%= form_with model: @address, url: public_addresses_path do |f| %>
       <table class="table table-borderless">
         <tbody>
           <tr>
             <td><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
-            <td><%= f.text_field :postal_code %></td>
+            <td><%= f.text_field :postal_code, placeholder: "0000000" %></td>
           </tr>
           <tr>
             <td><%= f.label :address, "住所" %></td>
@@ -26,6 +26,41 @@
         </tbody>
       </table>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row position-absolutestart-0">
+    <div class="col-md-10">
+      
+      <table class="table border border-secondary border-3">
+        <thead class="bg-light">
+          <tr>
+           <th class="border border-secondary border-3">郵便番号</th>
+           <th class="border border-secondary border-3">住所</th>
+           <th class="border border-secondary border-3">宛名</th>
+           <th class="border border-secondary border-3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+          <tr>
+            <td class="border border-secondary border-3 col-md-2"><%= address.postal_code %></td>
+            <td class="border border-secondary border-3"><%= address.address %></td>
+            <td class="border border-secondary border-3 col-md-2"><%= address.name %></td>            
+            <td class="border border-secondary border-3 col-md-3">
+              <%= link_to edit_public_address_path(address.id), class: 'btn btn-success mr-2' do %>
+                編集する
+              <% end %>
+              <%= link_to public_addresses_path(address.id), method: :delete, class: 'btn btn-danger' do %>
+                削除する
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
