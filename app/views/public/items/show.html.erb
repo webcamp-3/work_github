@@ -1,2 +1,48 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container m-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-2">
+      <table class="table table-borderless table-sm ">
+        <thead class="thead-light">
+          <th class="border border-secondary">
+            ジャンル検索
+          </th>
+        </thead>
+        <tbody class="border border-secondary">
+          <% @genres.each do |genre| %>
+          <tr>
+            <td><%= genre.name %></td>
+          </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-4">
+      <%= image_tag @item.image, size: "300x200" %>
+    </div>
+    <div class="col-lg-6">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td class="h2 font-weight-bold"><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td class="h4 font-weight-bolder"><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td class="font-weight-bolder">¥<%= @item.price %>（税込）</td>
+          </tr>
+          <tr>
+            <td>
+            <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.hidden_field :customer_id, :value => current_customer.id %>
+              <%= f.select :amount, *[1..9], include_blank: "個数選択" %>
+              <%= f.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
+            <% end %>
+            </td>
+           </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
