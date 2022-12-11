@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-md-8 offset-md-1">
+    <h5 class="m-4 text-black">注文情報確認</h5>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th class="border border-secondary">商品名</th>
+            <th class="border border-secondary">単価（税込）</th>
+            <th class="border border-secondary">数量</th>
+            <th class="border border-secondary">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td class="border border-secondary"><%= cart_item.item.name %></td>
+            <td class="border border-secondary"><%= cart_item.item.with_tax_price%></td>
+            <td class="border border-secondary"><%= cart_item.amount %></td>
+            <td class="border border-secondary"><%= cart_item.subtotal%></td>
+            <% @total +=  cart_item.subtotal %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-4">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="border border-secondary col-lg-6 table-active">送料</td>
+            <td class="border border-secondary"><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <td class="border border-secondary col-lg-6 table-active">商品合計</td>
+            <td class="border border-secondary">
+              <%= @total %>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-secondary col-lg-6 table-active">請求金額</td>
+            <td class="border border-secondary"><%= @total + @order.postage %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h4 class="font-weight-bold">支払方法</h4>
+      <%= Order.payment_methods_i18n[ @order.payment_method ] %></br>
+
+      <h4 class="font-weight-bold mt-4">お届け先</h4>
+      <%= @post_code + @address + @name %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= form_with model: @order, url: public_orders_path do |f| %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.hidden_field :address, :value => @address %>
+      <%= f.hidden_field :post_code, :value => @post_code %>
+      <%= f.hidden_field :name, :value => @name %>
+      <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+      <%= f.hidden_field :billing_amount, :value => @total %>
+      <%= f.hidden_field :postage, :value => @order.postage %>
+      <%= f.submit '注文を確定する', class: "btn btn-sm btn-success" %>
+    <% end %>
+  </div>
+</div>

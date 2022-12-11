@@ -1,2 +1,85 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="row justify-content-center">
+  <div class="col-md-8 offset-md-1">
+    <h5 class="m-4 text-black">注文履歴詳細</h5>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <table class="table table-borderless table-sm">
+        <tbody>
+          <tr>
+            <td class="font-weight-bold">注文情報</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="border border-secondary">注文日</td>
+            <td class="border border-secondary"><%= @order.created_at %></td>
+          </tr>
+          <tr>
+            <td class="border border-secondary">配送先</td>
+            <td class="border border-secondary">
+              〒<%= @order.post_code %></br>
+              <%= @order.address %></br>
+              <%= current_customer.last_name + current_customer.first_name %>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-secondary">支払方法</td>
+            <td class="border border-secondary"><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <td class="border border-secondary">ステータス</td>
+            <td class="border border-secondary"><%= @order.status_i18n %></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-borderless table-sm">
+        <thead>
+          <tr>
+            <th>注文内容</th>
+          </tr>
+          <tr>
+            <th class="border border-secondary">商品</th>
+            <th class="border border-secondary">単価</th>
+            <th class="border border-secondary">個数</th>
+            <th class="border border-secondary">小計</th>
+          </tr>
+        </thead>
+        <% @order.order_details.each do |order_detail| %>
+        <tbody>
+          <tr>
+            <td class="border border-secondary"><%= order_detail.item.name %></td>
+            <td class="border border-secondary"><%= order_detail.item.with_tax_price %></td>
+            <td class="border border-secondary"><%= order_detail.quantity %></td>
+            <td class="border border-secondary"><%= order_detail.subtotal %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-lg-4">
+      <table class="table table-borderless table-sm">
+        <tbody>
+          <tr>
+            <td>請求情報</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="border border-secondary">商品合計</td>
+            <td class="border border-secondary"><%= @order.billing_amount %></td>
+          </tr>
+          <tr>
+            <td class="border border-secondary">送料</td>
+            <td class="border border-secondary"><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <td class="border border-secondary">請求金額</td>
+            <td class="border border-secondary"><%= @order.billing_amount + 800 %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

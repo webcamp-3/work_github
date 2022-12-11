@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+  <div class="col-md-8 offset-md-1">
+    <h5 class="m-4 text-black">注文履歴詳細</h5>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-borderless table-sm">
+      <tbody>
+        <tr>
+          <td class="font-weight-bold col-lg-2">購入者</td>
+          <td><%= @order.customer.last_name + @order.customer.first_name %></td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold col-lg-2">注文日</td>
+          <td><%= @order.created_at %></td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold col-lg-2">配送先</td>
+          <td><%= @order.address %></td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold col-lg-2">支払方法</td>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold col-lg-2">注文ステータス</td>
+          <td>
+            <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch, local: true do |f| %>
+              <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+              <%= f.submit "変更", class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

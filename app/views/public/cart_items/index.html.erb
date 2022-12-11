@@ -1,6 +1,9 @@
 <div class="row justify-content-center">
-  <div class="col-md-8 offset-md-1">
+  <div class="col-lg-5 offset-md-1">
     <h5 class="m-4 text-black">ショッピングカート</h5>
+  </div>
+  <div class="col-lg-2 offset-md-1 mt-4">
+    <%= link_to "カートを空にする", public_cart_items_destroy_all_path, class: "btn btn-sm btn-danger ", method: :delete, "data-confirm" => "Are you sure?" %>
   </div>
 </div>
 
@@ -30,16 +33,14 @@
               <% end %>
             </td>
             <td class="border border-secondary"><%= cart_item.subtotal%></td>
-            <td class="border border-secondary"><%= link_to "削除する", public_cart_items_path, class: "btn btn-sm btn-danger ", method: :delete, "data-confirm" => "Are you sure?" %></td>
+            <td class="border border-secondary"><%= link_to "削除する", public_cart_item_path(cart_item.id), class: "btn btn-sm btn-danger ", method: :delete, "data-confirm" => "Are you sure?" %></td>
             <% @total +=  cart_item.subtotal %>
           </tr>
-          
-        
 
           <% end %>
         </tbody>
       </table>
-      
+
       <table class="table table-sm table-borderless">
         <td><%= link_to "買い物を続ける", public_items_path, class: "btn btn-sm btn-primary"%></td>
         <td></td>
@@ -47,7 +48,7 @@
         <td class="border border-secondary text-center bg-light col-lg-2"><%= label :total_amount, "合計金額" %></td>
         <td class="border border-secondary col-lg-2"><%= @total %></td>
       </table>
-      
+
       <div class="row justify-content-center">
         <%= link_to "情報入力に進む", new_public_order_path, class: "btn btn-sm btn-success"%>
       </div>

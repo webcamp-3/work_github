@@ -1,65 +1,68 @@
-<body>
-    <main>
-      <div>
+<div class="row justify-content-center">
+    <div class="col-md-12 offset-md-1">
         <h5 class="m-4 text-black bg-info d-inline-block">会員情報編集</h5>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-12 offset-md-1">
         <%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
-        <tr>
-            <td>
-            <%= label :customer_id, "会員ID" %>
-            <%= @customer.id %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-        <%= f.label :customer_name, "氏名" %>
-        <%= f.text_field :customer.fisrt_name %>
-        <%= f.text_field :customer.last_name %>
-        </td>
-        </tr>
-        <tr>
-            <td>
-            <%= f.label :item_introduction, "フリガナ" %>
-            <%= f.text_field :customer.fisrt_name_kana %>
-            <%= f.text_field :customer.last_name_kana %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            <%= f.label :item_genre, "郵便番号" %>
-            <%= f.text_field customer.postal_code %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            <%= f.label :item_price, "住所" %>
-            <%= f.text_area customer.address %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            <%= f.label :customer_price, "電話番号" %>
-            <%= f.text_field customer.telephone_number %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            <%= f.label :customer_price, "メールアドレス" %>
-            <%= f.text_field customer.email %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            <%= f.label :customer_status, "会員ステータス" %>
-            <%= f.radio_button :is_deleted, false %>
-            <%= f.label :is_deleted, "有効", class: "text-active" %>
-            <%= f.radio_button :is_deleted, true %>
-            <%= f.label :is_deleted, "退会", class: "text-active" %>
-            </td>
-        </tr>
-        <div>
-          <%= f.submit '変更を保存' %>
-        </div>
+        <table class="table table-borderless table-sm">
+            <tbody>
+                <tr>
+                    <td class="col-lg-2"><%= label :customer_id, "会員ID" %></td>
+                    <td><%= @customer.id %></td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><%= f.label :customer_name, "氏名" %></td>
+                    <td>
+                        <%= f.text_field :first_name %>
+                        <%= f.text_field :last_name %>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><%= f.label :item_introduction, "フリガナ" %></td>
+                    <td>
+                        <%= f.text_field :first_name_kana %>
+                        <%= f.text_field :last_name_kana %>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><%= f.label :item_genre, "郵便番号" %></td>
+                    <td><%= f.text_field :postal_code %></td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><%= f.label :item_price, "住所" %></td>
+                    <td><%= f.text_area :address %></td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><%= f.label :customer_price, "電話番号" %></td>
+                    <td><%= f.text_field :telephone_number %></td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><%= f.label :customer_price, "メールアドレス" %></td>
+                    <td><%= f.text_field :email %></td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><%= f.label :customer_status, "会員ステータス" %></td>
+                    <td>
+                        <%= f.radio_button :is_deleted, false %>
+                        <%= f.label :is_deleted, "有効", class: "text-active" %>
+                        <%= f.radio_button :is_deleted, true %>
+                        <%= f.label :is_deleted, "退会", class: "text-active" %>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <%= link_to "編集", edit_admin_customer_path, class: "btn btn-sm btn-success"%>
+                        <%= link_to "注文履歴一覧を見る", admin_homes_top_path, class: "btn btn-sm btn-primary ml-4"%>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <% end %>
-      </div>
-    </main>
-</body>
+    </div>
+</div>
+
+
