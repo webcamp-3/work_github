@@ -18,7 +18,11 @@
         </tr>
         <tr>
           <td class="font-weight-bold col-lg-2">配送先</td>
-          <td><%= @order.address %></td>
+          <td>
+            〒<%= @order.post_code %></br>
+            <%= @order.address %>
+            <%= @order.customer.last_name + @order.customer.first_name %>
+          </td>
         </tr>
         <tr>
           <td class="font-weight-bold col-lg-2">支払方法</td>
@@ -66,7 +70,7 @@
       <tbody>
         <tr>
           <td>商品合計</td>
-          <td></td>
+          <td><%= @order.billing_amount %></td>
         </tr>
         <tr>
           <td>送料</td>
@@ -74,7 +78,7 @@
         </tr>
         <tr>
           <td>請求金額合計</td>
-          <td></td>
+          <td><%= @order.billing_amount + @order.postage %></td>
         </tr>
       </tbody>
     </table>

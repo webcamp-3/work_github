@@ -17,13 +17,13 @@
       </table>
     </div>
     <div class="col-lg-10">
-      <h3>商品一覧</h3>
       <div class="container">
+        <h3>商品一覧</h3>
         <div class="row">
           <% @items.each do |item| %>
-            <div class="col-3 mb-3">
+            <div class="col-3">
               <%= link_to public_item_path(item.id) do %>
-              <%= image_tag item.image, size: "200x150" %></br>
+                <%= image_tag item.image, size: "200x150" %></br>
               <% end %>
               <%= item.name %></br>
               ¥<%= item.price %>
