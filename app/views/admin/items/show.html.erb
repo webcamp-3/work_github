@@ -12,24 +12,24 @@
       <table class="table table-borderless">
         <tbody>
           <tr>
-            <td><%= label :item_name, "商品名" %></td>
+            <td class="col-lg-3"><%= label :item_name, "商品名" %></td>
             <td><%= @item.name %></td>
           </tr>
           <tr>
-            <td><%= label :item_introduction, "商品説明" %></td>
+            <td class="col-lg-3"><%= label :item_introduction, "商品説明" %></td>
             <td><%= @item.introduction %></td>
           </tr>
           <tr>
-            <td><%= label :item_genre, "ジャンル" %></td>
+            <td class="col-lg-3"><%= label :item_genre, "ジャンル" %></td>
             <td><%= @item.genre.name %></td>
           </tr>
           <tr>
-            <td><%= label :item_price, "税込価格""(税抜価格)" %></td>
+            <td class="col-lg-3"><%= label :item_price, "税込価格""(税抜価格)" %></td>
             <td><%= @item.price %></td>
           </tr>
           <tr>
-            <td><%= label :item_status, "販売ステータス" %></td>
-            <td>
+            <td class="col-lg-3"><%= label :item_status, "販売ステータス" %></td>
+            <td class="text-success">
             <% if @item.is_active == true %>
               販売中
             <% else %>

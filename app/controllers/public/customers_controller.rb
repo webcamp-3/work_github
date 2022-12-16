@@ -9,7 +9,7 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.save
+    @customer.update(customer_params)
     redirect_to public_customers_path
   end
 
@@ -21,6 +21,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @customer.update(is_deleted: true)
     reset_session
+    redirect_to public_homes_top_path
   end
 
   def customer_params

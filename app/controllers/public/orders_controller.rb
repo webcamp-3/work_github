@@ -1,6 +1,10 @@
 class Public::OrdersController < ApplicationController
   def new
-    @order = Order.new
+    if current_customer.cart_items.blank?
+      redirect_to public_cart_items_path
+    else
+      @order = Order.new
+    end
   end
 
   def create
@@ -16,6 +20,7 @@ class Public::OrdersController < ApplicationController
       order_detail.production_status = 0
       order_detail.save!
     end
+    cart_items.destroy_all
     redirect_to public_orders_completion_path
   end
 

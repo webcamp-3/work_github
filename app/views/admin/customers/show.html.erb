@@ -38,11 +38,11 @@
                 </tr>
                 <tr>
                     <td class="col-lg-2"><%= label :customer_status, "会員ステータス" %></td>
-                    <td>
+                    <td class="text-successa">
                         <% if @customer.is_deleted == true %>
-                        販売中
+                        退会
                         <% else %>
-                        販売停止中
+                        有効
                         <% end %>
                     </td>
                 </tr>
