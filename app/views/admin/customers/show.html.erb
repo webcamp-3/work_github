@@ -14,11 +14,11 @@
                 </tr>
                 <tr>
                     <td class="col-lg-2"><%= label :customer_name, "氏名" %></td>
-                    <td><%= @customer.first_name + @customer.last_name %></td>
+                    <td><%= @customer.last_name  + @customer.first_name%></td>
                 </tr>
                 <tr>
                     <td class="col-lg-2"><%= label :item_introduction, "フリガナ" %></td>
-                    <td><%= @customer.first_name_kana + @customer.last_name_kana %></td>
+                    <td><%= @customer.last_name_kana + @customer.first_name_kana %></td>
                 </tr>
                 <tr>
                     <td class="col-lg-2"><%= label :item_genre, "郵便番号" %></td>
